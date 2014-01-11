@@ -1,6 +1,6 @@
 [user]
-	name = kxhitiz
-	email = nirvanagrg@gmail.com
+  name = kxhitiz
+  email = nirvanagrg@gmail.com
 [github]
   user = kxhitiz
 [mirror]
@@ -35,8 +35,5 @@
   default = tracking
 [branch]
   autosetuprebase = always
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
 [diff]
   algorithm = patience
