@@ -1,0 +1,3 @@
+⌥←Delete : 0x1b 0x7f (send hex code)
+⌥← : b (send escape sequence)
+⌥→ : f (send escape sequence)
