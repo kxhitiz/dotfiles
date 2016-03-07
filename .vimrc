@@ -16,7 +16,7 @@ filetype indent plugin on
 "Enable syntax highlighting
 syntax on
 
-autocmd VimEnter * NERDTree " Open nerdtree by default
+"autocmd VimEnter * NERDTree " Open nerdtree by default
 autocmd VimEnter * wincmd p " Move cursor main window
 autocmd FileType crontab setlocal nowritebackup
 
@@ -24,8 +24,7 @@ autocmd FileType crontab setlocal nowritebackup
 set wildmenu
 
 "Display line number
-set number
-
+set relativenumber
 " Show partial commands in the last line of the screen
 set showcmd
 
@@ -33,12 +32,16 @@ set cursorline
 
 set colorcolumn=80
 
+set clipboard=unnamed
+
+set lazyredraw "redraw only when we need to.
+
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
 
 " start search as you type
-set incsearch             
+set incsearch
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -69,17 +72,9 @@ set tabstop=2
 
 set autoread
 
-"let g:airline_powerline_fonts = 4 
-"set guifont=Inconsolata\ for\ Powerline:h15
-"let g:Powerline_symbols = 'fancy'
-"set encoding=utf-8
-"set t_Co=256
-"set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-"set termencoding=utf-8
-"------------------------------------------------------------
-"" Mappings {{{1
-"
+" Strip whitespace
+autocmd FileType javascript,java,html,ruby autocmd BufWritePre <buffer> StripWhitespace
+
 "" Useful mappings
 
 inoremap ;; <esc> 
@@ -88,9 +83,13 @@ set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-noremap <Leader>n :NERDTreeToggle<CR>
-noremap <Leader>c :close<CR>
-noremap <Leader>v :e ~/.vimrc<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>c :close<CR>
+nnoremap <Leader>v :e ~/.vimrc<CR>
+
+"Flush
+nnoremap ff :CommandTFlush<CR> "Flush commandT
+nnoremap nf R<CR> "Flush neardTree
 
 " Tabs
 nnoremap tl :tabnext<CR>
@@ -99,7 +98,7 @@ nnoremap tn :tabedit .<cr>
 nnoremap tx :tabclose<CR>
 
 " Rails Specifics/ and more
-map <Leader>ak :Ack 
+map <Leader>ag :Ag 
 map <Leader>ac :Econtroller application<cr>
 map <Leader>b :!bundle 
 map <Leader>bo :!bundle open 
@@ -111,6 +110,10 @@ map <Leader>ev :Eview
 map <Leader>gem :e Gemfile<cr>
 map <Leader>sc :Eschema<cr>
 map <Leader>ctg :!ctags -R .<cr>
+map <Leader>al :A<cr>
+
+"clear search
+map <backspace> :noh<cr>
 
 " easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -120,14 +123,5 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplcache.
-"let g:neocomplcache_enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplcache_enable_smart_case = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplcache_min_syntax_length = 3
-"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
 set pastetoggle=<F2> "fixes indentation while copy pasting
+
