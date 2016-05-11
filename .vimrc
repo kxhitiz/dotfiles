@@ -1,4 +1,24 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'wincent/command-t'
+Plug 'rking/ag.vim'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-bundler'
+Plug 'kchmck/vim-coffee-script'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+Plug 'ngmy/vim-rubocop'
+Plug 'scrooloose/nerdcommenter'
+" Add plugins to &runtimepath
+call plug#end()
 
 syntax enable
 set background=dark
@@ -15,6 +35,8 @@ filetype indent plugin on
 
 "Enable syntax highlighting
 syntax on
+
+let g:jsx_ext_required = 0
 
 "autocmd VimEnter * NERDTree " Open nerdtree by default
 autocmd VimEnter * wincmd p " Move cursor main window
@@ -58,6 +80,8 @@ set autoindent
 " " dialogue asking if you wish to save changed files.
 set confirm
 
+"set foldmethod=indent
+
 " Enable use of the mouse for all modes
 " set mouse=a
 "
@@ -70,14 +94,17 @@ set softtabstop=2
 set expandtab
 set tabstop=2
 
+set list
+set listchars=tab:▸\
+
 set autoread
 
 " Strip whitespace
-autocmd FileType javascript,java,html,ruby autocmd BufWritePre <buffer> StripWhitespace
+autocmd FileType javascript,java,html,ruby,es6 autocmd BufWritePre <buffer> StripWhitespace
 
 "" Useful mappings
 
-inoremap ;; <esc> 
+inoremap jk <esc> 
 
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -86,6 +113,9 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>c :close<CR>
 nnoremap <Leader>v :e ~/.vimrc<CR>
+
+nnoremap <Leader>s :StripWhitespace<CR>
+nnoremap <Leader>r :retab<CR>
 
 "Flush
 nnoremap ff :CommandTFlush<CR> "Flush commandT
@@ -112,6 +142,8 @@ map <Leader>sc :Eschema<cr>
 map <Leader>ctg :!ctags -R .<cr>
 map <Leader>al :A<cr>
 
+map <Leader>i :PlugInstall<cr>
+
 "clear search
 map <backspace> :noh<cr>
 
@@ -125,3 +157,18 @@ set splitright
 
 set pastetoggle=<F2> "fixes indentation while copy pasting
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" systastic conf
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let ruby_no_expensive = 1
+
+" fugitive vim
+map <Leader>gs :Gstatus<cr>
+map <Leader>bl :Gblame<cr>
