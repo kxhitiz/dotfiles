@@ -17,6 +17,7 @@ Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
 " Add plugins to &runtimepath
 call plug#end()
 
