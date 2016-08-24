@@ -18,6 +18,10 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'suan/vim-instant-markdown'
+Plug 'jc00ke/vim-tomdoc'
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -48,6 +52,8 @@ set wildmenu
 
 "Display line number
 set relativenumber
+set number
+
 " Show partial commands in the last line of the screen
 set showcmd
 
@@ -105,7 +111,7 @@ autocmd FileType javascript,java,html,ruby,es6 autocmd BufWritePre <buffer> Stri
 
 "" Useful mappings
 
-inoremap jk <esc> 
+inoremap jk <esc>
 
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -129,15 +135,15 @@ nnoremap tn :tabedit .<cr>
 nnoremap tx :tabclose<CR>
 
 " Rails Specifics/ and more
-map <Leader>ag :Ag 
+map <Leader>ag :Ag
 map <Leader>ac :Econtroller application<cr>
-map <Leader>b :!bundle 
-map <Leader>bo :!bundle open 
+map <Leader>b :!bundle
+map <Leader>bo :!bundle open
 map <Leader>cdb :e config/database.yml<cr>
-map <Leader>ec :Econtroller 
-map <Leader>em :Emodel 
+map <Leader>ec :Econtroller
+map <Leader>em :Emodel
 map <Leader>er :e config/routes.rb<cr>
-map <Leader>ev :Eview 
+map <Leader>ev :Eview
 map <Leader>gem :e Gemfile<cr>
 map <Leader>sc :Eschema<cr>
 map <Leader>ctg :!ctags -R .<cr>
@@ -156,11 +162,13 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+nnoremap <C-p> :InstantMarkdownPreview<cr>
 set pastetoggle=<F2> "fixes indentation while copy pasting
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set noswapfile
 
 " systastic conf
 let g:syntastic_always_populate_loc_list = 1
@@ -169,7 +177,25 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let ruby_no_expensive = 1
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
 
 " fugitive vim
 map <Leader>gs :Gstatus<cr>
 map <Leader>bl :Gblame<cr>
+
+" window resize
+map <Leader>] :vertical resize +1<CR>
+map <Leader>[ :vertical resize -1<CR>
+map <Leader>- :res +1<CR>
+map <Leader>= :res -1<CR>
+
+map fp :"%p
+
+nnoremap <leader>yf :let @*=expand("%")<cr>:echo "Copied file name to clipboard"<cr>
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
