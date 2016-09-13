@@ -151,7 +151,7 @@ map <Leader>al :A<cr>
 
 map <Leader>i :PlugInstall<cr>
 
-"clear search
+"clear the search
 map <backspace> :noh<cr>
 
 " easier split navigation
