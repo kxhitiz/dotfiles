@@ -101,10 +101,15 @@ set softtabstop=2
 set expandtab
 set tabstop=2
 
+
 set list
 set listchars=tab:▸\
 
 set autoread
+
+autocmd Filetype eruby setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype html setlocal ts=4 sw=4 sts=0 expandtab
 
 " Strip whitespace
 autocmd FileType javascript,java,html,ruby,es6 autocmd BufWritePre <buffer> StripWhitespace
