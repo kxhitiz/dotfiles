@@ -115,8 +115,8 @@ autocmd Filetype html setlocal ts=4 sw=4 sts=0 expandtab
 autocmd FileType javascript,java,html,ruby,es6 autocmd BufWritePre <buffer> StripWhitespace
 
 "" Useful mappings
-
 inoremap jk <esc>
+imap kj <esc>
 
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -124,7 +124,9 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>c :close<CR>
-nnoremap <Leader>v :e ~/.vimrc<CR>
+
+nmap <Leader>vr :sp $MYVIMRC<cr>
+nmap <Leader>so :source $MYVIMRC<cr>
 
 nnoremap <Leader>s :StripWhitespace<CR>
 nnoremap <Leader>r :retab<CR>
@@ -155,6 +157,13 @@ map <Leader>ctg :!ctags -R .<cr>
 map <Leader>al :A<cr>
 
 map <Leader>i :PlugInstall<cr>
+
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 "clear the search
 map <backspace> :noh<cr>
@@ -195,12 +204,18 @@ map <Leader>[ :vertical resize -1<CR>
 map <Leader>- :res +1<CR>
 map <Leader>= :res -1<CR>
 
+" Easy access to the start of the line
+nmap 0 ^
+
 map fp :"%p
 
 nnoremap <leader>yf :let @*=expand("%")<cr>:echo "Copied file name to clipboard"<cr>
+
+command! Q q "Bind :Q to :q
+command! Qa qa "Bind :Qa to :qa
 
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
+let @t ='df,AjkA, jkpx'
