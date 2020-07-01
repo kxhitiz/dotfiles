@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
@@ -30,7 +29,7 @@ Plug 'https://github.com/adelarsq/vim-matchit'
 call plug#end()
 
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 
 set nocompatible
