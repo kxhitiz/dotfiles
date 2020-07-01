@@ -1,12 +1,10 @@
 call plug#begin('~/.vim/plugged')
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'wincent/command-t'
 Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'vim-airline/vim-airline'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-bundler'
 Plug 'kchmck/vim-coffee-script'
 Plug 'altercation/vim-colors-solarized'
@@ -15,13 +13,19 @@ Plug 'pangloss/vim-javascript'
 Plug 'https://github.com/rtroxler/vim-jsx.git'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'ngmy/vim-rubocop'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'suan/vim-instant-markdown'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'jc00ke/vim-tomdoc'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'ap/vim-css-color'
+Plug 'junegunn/vim-emoji'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'https://github.com/adelarsq/vim-matchit'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -30,6 +34,16 @@ set background=dark
 colorscheme solarized
 
 set nocompatible
+
+"for instant mkdown
+set shell=bash\ -i
+
+"ctrl-x ctrl-u
+set completefunc=emoji#complete
+augroup emoji_complete
+  autocmd!
+  autocmd FileType markdown setlocal completefunc=emoji#complete
+augroup END
 
 let mapleader = " "
 
@@ -40,12 +54,14 @@ filetype indent plugin on
 
 "Enable syntax highlighting
 syntax on
+set synmaxcol=200
 
 let g:jsx_ext_required = 0
 
 "autocmd VimEnter * NERDTree " Open nerdtree by default
 autocmd VimEnter * wincmd p " Move cursor main window
 autocmd FileType crontab setlocal nowritebackup
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Better command-line completion
 set wildmenu
@@ -57,9 +73,9 @@ set number
 " Show partial commands in the last line of the screen
 set showcmd
 
-set cursorline
+"set cursorline
 
-set colorcolumn=80
+set colorcolumn=100
 
 set clipboard=unnamed
 
@@ -107,16 +123,23 @@ set listchars=tab:▸\
 
 set autoread
 
-autocmd Filetype eruby setlocal ts=4 sw=4 sts=0 expandtab
-autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
-autocmd Filetype html setlocal ts=4 sw=4 sts=0 expandtab
+autocmd filetype eruby setlocal ts=4 sw=4 sts=0 expandtab
+autocmd filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd filetype html setlocal ts=4 sw=4 sts=0 expandtab
+
+"------------------------------------------------------------
+"biggerpockets specific
+autocmd filetype eruby setlocal ts=2 sw=2 sts=0 expandtab
+autocmd filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+autocmd filetype html setlocal ts=2 sw=2 sts=0 expandtab
+"------------------------------------------------------------
 
 " Strip whitespace
 autocmd FileType javascript,java,html,ruby,es6 autocmd BufWritePre <buffer> StripWhitespace
 
 "" Useful mappings
 inoremap jk <esc>
-imap kj <esc>
+inoremap kj <esc>
 
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -128,11 +151,15 @@ nnoremap <Leader>c :close<CR>
 nmap <Leader>vr :sp $MYVIMRC<cr>
 nmap <Leader>so :source $MYVIMRC<cr>
 
-nnoremap <Leader>s :StripWhitespace<CR>
-nnoremap <Leader>r :retab<CR>
+" fzf mappings
+nmap <Leader>t :Files<cr>
+nmap <Leader>h :History<cr>
+
+nnoremap <Leader>tr :StripWhitespace<CR>
+nnoremap <Leader>re :retab<CR>
 
 "Flush
-nnoremap ff :CommandTFlush<CR> "Flush commandT
+"nnoremap ff :CommandTFlush<CR> "Flush commandT
 nnoremap nf R<CR> "Flush neardTree
 
 " Tabs
@@ -146,7 +173,8 @@ map <Leader>ag :Ag
 map <Leader>ac :Econtroller application<cr>
 map <Leader>b :!bundle
 map <Leader>bo :!bundle open
-map <Leader>cdb :e config/database.yml<cr>
+map <Leader>dml :e config/database.yml<cr>
+map <Leader>aml :e config/application.yml<cr>
 map <Leader>ec :Econtroller
 map <Leader>em :Emodel
 map <Leader>er :e config/routes.rb<cr>
@@ -155,6 +183,7 @@ map <Leader>gem :e Gemfile<cr>
 map <Leader>sc :Eschema<cr>
 map <Leader>ctg :!ctags -R .<cr>
 map <Leader>al :A<cr>
+map <Leader>val :AV<cr>
 
 map <Leader>i :PlugInstall<cr>
 
@@ -163,6 +192,7 @@ map <Leader>i :PlugInstall<cr>
 " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>vs :vsplit <CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 "clear the search
@@ -193,6 +223,7 @@ let g:syntastic_check_on_wq = 0
 let ruby_no_expensive = 1
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
+let g:CommandTMaxFiles = 400000
 
 " fugitive vim
 map <Leader>gs :Gstatus<cr>
@@ -219,3 +250,19 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 let @t ='df,AjkA, jkpx'
+
+function! TabCloseRight(bang)
+    let cur=tabpagenr()
+    while cur < tabpagenr('$')
+        exe 'tabclose' . a:bang . ' ' . (cur + 1)
+    endwhile
+endfunction
+
+function! TabCloseLeft(bang)
+    while tabpagenr() > 1
+        exe 'tabclose' . a:bang . ' 1'
+    endwhile
+endfunction
+
+command! -bang Tcr call TabCloseRight('<bang>')
+command! -bang Tcl call TabCloseLeft('<bang>')
