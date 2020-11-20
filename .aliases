@@ -1,0 +1,18 @@
+alias bp="cd ~/Dev/biggerpockets"
+
+alias elog="tail -f /Users/kshitizgurung/.evm/elasticsearch/logs/elasticsearch.log"
+
+#ruby/rails aliases
+alias be="bundle exec"
+alias ber="bundle exec rspec"
+alias bp="~/dev/biggerPockets"
+alias bay="bundle & yarn"
+alias rials c="rails c"
+alias rc="rails c"
+
+#git alias
+alias gpl="git pull"
+alias gps="git push"
+alias gs="git stash"
+alias gsp="git stash pop"
+alias railspid="lsof -P | grep ':3000' | awk '{print $2}'"
