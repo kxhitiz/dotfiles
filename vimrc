@@ -29,7 +29,7 @@ Plug 'https://github.com/adelarsq/vim-matchit'
 call plug#end()
 
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 
 set nocompatible
