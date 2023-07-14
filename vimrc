@@ -25,6 +25,8 @@ Plug 'junegunn/vim-emoji'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/adelarsq/vim-matchit'
+Plug 'mrdotb/vim-tailwindcss'
+"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -33,6 +35,14 @@ set background=light
 colorscheme solarized
 
 set nocompatible
+
+"tailwind specifics
+" Set the completefunc you can do this per file basis or with a mapping
+set completefunc=tailwind#complete
+" The mapping I use
+nnoremap <leader>tw :set completefunc=tailwind#complete<cr>
+" Add this autocmd to your vimrc to close the preview window after the completion is done
+autocmd CompleteDone * pclose
 
 "for instant mkdown
 set shell=bash\ -i
@@ -74,11 +84,15 @@ set showcmd
 
 "set cursorline
 
-set colorcolumn=100
+set colorcolumn=120
 
 set clipboard=unnamed
 
 set lazyredraw "redraw only when we need to.
+
+" Linting
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
 
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
@@ -224,9 +238,11 @@ let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 let g:CommandTMaxFiles = 400000
 
+let NERDTreeShowHidden=1
+
 " fugitive vim
-map <Leader>gs :Gstatus<cr>
-map <Leader>bl :Gblame<cr>
+map <Leader>gs :Git status<cr>
+map <Leader>bl :Git blame<cr>
 
 " window resize
 map <Leader>] :vertical resize +1<CR>
