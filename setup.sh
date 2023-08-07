@@ -1,15 +1,35 @@
 #!/bin/bash
 
+# Function to check if a command is available in the system
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Check if Homebrew is installed
+if ! command_exists brew; then
+    echo "Homebrew is not installed. Please install Homebrew first."
+    exit 1
+fi
+
+# Install the_silver_searcher
+if command_exists ag; then
+    echo "the_silver_searcher (ag) is already installed."
+else
+    # Install the_silver_searcher (ag) using Homebrew
+    echo "Installing the_silver_searcher (ag)..."
+    brew install the_silver_searcher
+fi 
+
 # Run the curl command to download vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Check if the curl command was successful
-if [ $? -eq 0 ]; then
-    echo "vim-plug downloaded successfully."
-else
-    echo "Failed to download vim-plug. Please check your internet connection or try again later."
-fi
+#if [ $? -eq 0 ]; then
+#     echo "vim-plug downloaded successfully."
+# else
+#     echo "Failed to download vim-plug. Please check your internet connection or try again later."
+# fi
 
 # Get the current directory path
 current_directory=$(pwd)
@@ -21,16 +41,27 @@ github_vimrc_path="$current_directory/vimrc"
 mac_vimrc_path="$HOME/.vimrc"
 
 # Check if the GitHub vimrc file exists
-if [ -f "$github_vimrc_path" ]; then
-    # Remove the existing macOS Vim RC file if it exists
-    if [ -f "$mac_vimrc_path" ]; then
-        rm "$mac_vimrc_path"
-    fi
+#if [ -f "$github_vimrc_path" ]; then
+#    # Remove the existing macOS Vim RC file if it exists
+#    if [ -f "$mac_vimrc_path" ]; then
+#        rm "$mac_vimrc_path"
+#    fi
+#
+#    # Create the symlink
+#    ln -s "$github_vimrc_path" "$mac_vimrc_path"
+#
+#    echo "Symlink created successfully."
+#else
+#    echo "GitHub vimrc file not found. Please provide the correct path."
+#fi
 
-    # Create the symlink
-    ln -s "$github_vimrc_path" "$mac_vimrc_path"
-
-    echo "Symlink created successfully."
-else
-    echo "GitHub vimrc file not found. Please provide the correct path."
+# symlink neovim configuration
+# Backup existing Neovim config (if it exists)
+if [ -d "$HOME/.config/nvim" ]; then
+    mv "$HOME/.config/nvim" "$HOME/.config/nvim_backup"
 fi
+
+# Create symlink to the cloned config
+ln -s "$current_directory/nvim" "$HOME/.config/nvim"
+
+echo "Neovim config symlink created successfully."

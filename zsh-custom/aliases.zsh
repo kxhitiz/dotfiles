@@ -2,6 +2,10 @@ alias bp="cd ~/Dev/biggerpockets"
 
 alias elog="tail -f /Users/kshitizgurung/.evm/elasticsearch/logs/elasticsearch.log"
 
+# neovim
+alias nv="nvim"
+alias vv="nvim"
+
 #ruby/rails aliases
 alias be="bundle exec"
 alias ber="bundle exec rspec"
