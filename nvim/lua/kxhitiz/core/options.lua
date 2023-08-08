@@ -37,3 +37,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
+
+-- Show trailing whitespace as red squiggly lines
+vim.opt.list = true
+vim.opt.listchars:append("trail:⋅")

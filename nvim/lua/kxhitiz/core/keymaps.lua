@@ -51,3 +51,11 @@ keymap.set("n", "<leader>z", ":Lazy<CR>")
 
 -- mason
 keymap.set("n", "<leader>m", ":Mason<CR>")
+
+-- Strip trailing whitespaces
+-- Define the function to strip trailing spaces
+function StripTrailingSpaces()
+  vim.cmd([[ %s/\s\+$//e ]])
+end
+---- Set up key mappings
+vim.api.nvim_set_keymap("n", "<Leader>tr", ":lua StripTrailingSpaces()<CR>", { noremap = true, silent = true })
