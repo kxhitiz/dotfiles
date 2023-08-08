@@ -19,9 +19,9 @@ keymap.set("n", "<leader>h", ":tabp<CR>") -- go to previous tab
 
 -- Define the function to copy the current file path to the clipboard
 function CopyFilePathToClipboard()
-	local file_path = vim.fn.expand("%:p")
-	vim.fn.setreg("*", file_path)
-	print("File path copied to clipboard: " .. file_path)
+  local file_path = vim.fn.expand("%:p")
+  vim.fn.setreg("*", file_path)
+  print("File path copied to clipboard: " .. file_path)
 end
 
 -- Create the mapping to trigger the function

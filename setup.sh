@@ -37,6 +37,16 @@ else
     echo "Failed to install emmet-ls."
 fi
 
+# Install ripgrep using Homebrew for neovim plugin telescope grep search
+brew install ripgrep
+
+# Check if installation was successful
+if [ $? -eq 0 ]; then
+    echo "ripgrep installed successfully."
+else
+    echo "Failed to install ripgrep."
+fi
+
 # Run the curl command to download vim-plug
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 #    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
