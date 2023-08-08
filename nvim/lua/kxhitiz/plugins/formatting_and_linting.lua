@@ -17,10 +17,9 @@ return {
             condition = function(utils)
               return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
             end,
-            diagnostics.erb_lint,
-            diagnostics.reek,
-            diagnostics.rubocop,
           }),
+          diagnostics.reek,
+          diagnostics.rubocop,
         },
 
         -- configure format on save
