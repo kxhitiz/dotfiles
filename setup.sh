@@ -12,13 +12,30 @@ if ! command_exists brew; then
 fi
 
 # Install the_silver_searcher
-if command_exists ag; then
-    echo "the_silver_searcher (ag) is already installed."
+# if command_exists ag; then
+#     echo "the_silver_searcher (ag) is already installed."
+# else
+#     # Install the_silver_searcher (ag) using Homebrew
+#     echo "Installing the_silver_searcher (ag)..."
+#     brew install the_silver_searcher
+# fi 
+
+# Check if npm is installed
+if ! command -v npm &> /dev/null; then
+    echo "npm is not installed. Please install Node.js and npm first."
+    exit 1
+fi
+
+# Install emmet-ls globally using npm
+# Using it for neovim
+npm install -g emmet-ls
+
+# Check if installation was successful
+if [ $? -eq 0 ]; then
+    echo "emmet-ls installed successfully."
 else
-    # Install the_silver_searcher (ag) using Homebrew
-    echo "Installing the_silver_searcher (ag)..."
-    brew install the_silver_searcher
-fi 
+    echo "Failed to install emmet-ls."
+fi
 
 # Run the curl command to download vim-plug
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -35,10 +52,10 @@ fi
 current_directory=$(pwd)
 
 # Set the path to your GitHub repository's vimrc file
-github_vimrc_path="$current_directory/vimrc"
+#github_vimrc_path="$current_directory/vimrc"
 
 # Set the path to your macOS Vim RC file
-mac_vimrc_path="$HOME/.vimrc"
+#mac_vimrc_path="$HOME/.vimrc"
 
 # Check if the GitHub vimrc file exists
 #if [ -f "$github_vimrc_path" ]; then
@@ -65,3 +82,6 @@ fi
 ln -s "$current_directory/nvim" "$HOME/.config/nvim"
 
 echo "Neovim config symlink created successfully."
+
+# symlink zsh aliases
+ln -s "$current_directory/zsh-custom/aliases.zsh" "$HOME/.aliases"

@@ -1,8 +1,12 @@
 return {
 	-- managing & installing lsp servers, linters & formatters
+	--
+	-- in charge of managing lsp servers, linters & formatters
 	{
 		"williamboman/mason.nvim",
-	}, -- in charge of managing lsp servers, linters & formatters
+	},
+
+	-- bridges gap b/w mason & lspconfig
 	{
 
 		"williamboman/mason-lspconfig.nvim",
@@ -27,13 +31,15 @@ return {
 				},
 			})
 		end,
-	}, -- bridges gap b/w mason & lspconfig
+	},
 
 	-- configuring lsp server
 	{
 		"neovim/nvim-lspconfig",
 	},
 	{ "hrsh7th/cmp-nvim-lsp" }, -- for autocompletion
+
+	-- enhanced lsp uis
 	{
 		"glepnir/lspsaga.nvim",
 		branch = "main",
@@ -57,7 +63,7 @@ return {
 				},
 			})
 		end,
-	}, -- enhanced lsp uis
+	},
 	{
 		"jose-elias-alvarez/typescript.nvim",
 		config = function()
@@ -89,8 +95,8 @@ return {
 				-- typescript specific keymaps (e.g. rename file and update imports)
 				if client.name == "tsserver" then
 					keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-					keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-					keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
+					keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports
+					keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables
 				end
 			end
 
@@ -98,7 +104,6 @@ return {
 			local capabilities = cmp_nvim_lsp.default_capabilities()
 
 			-- Change the Diagnostic symbols in the sign column (gutter)
-			-- (not in youtube nvim video)
 			local signs = { Error = " ", Warn = " ", Hint = "󰋗", Info = " " }
 			for type, icon in pairs(signs) do
 				local hl = "DiagnosticSign" .. type
@@ -135,7 +140,14 @@ return {
 			lspconfig["emmet_ls"].setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+				filetypes = {
+					"html",
+					"typescriptreact",
+					"javascriptreact",
+					"css",
+					"scss",
+					"eruby",
+				},
 			})
 
 			-- configure lua server (with special settings)
