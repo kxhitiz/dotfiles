@@ -2,13 +2,14 @@ return {
   "folke/neodev.nvim",
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
-  -- { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+
   {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {},
   },
+
   { "christoomey/vim-tmux-navigator" }, -- tmux & split window navigation
   { "szw/vim-maximizer" }, -- maximizes and restores current window
 
