@@ -47,6 +47,9 @@ keymap.set("n", "<leader>fh", builtin.help_tags, {})
 keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "[fo] Find old files" })
 keymap.set("n", "<leader>k", ":Telescope keymaps<CR>", { desc = "[k] Show all the keymaps" })
 
+-- format
+keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
+
 -- lazy
 keymap.set("n", "<leader>z", ":Lazy<CR>")
 
