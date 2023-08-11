@@ -26,6 +26,10 @@ opt.termguicolors = true
 opt.background = "light"
 opt.signcolumn = "yes"
 
+-- Set colorcolumn to highlight column 80 and use a specific color
+vim.cmd("set colorcolumn=120")
+vim.cmd("highlight ColorColumn ctermbg=235 guibg=#5a5a5a")
+
 -- backspace
 opt.backspace = "indent,eol,start"
 

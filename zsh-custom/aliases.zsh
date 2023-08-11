@@ -5,6 +5,7 @@ alias elog="tail -f /Users/kshitizgurung/.evm/elasticsearch/logs/elasticsearch.l
 # neovim
 alias nv="nvim"
 alias vv="nvim"
+alias v="nvim"
 
 #ruby/rails aliases
 alias be="bundle exec"

@@ -27,6 +27,8 @@ end
 -- Create the mapping to trigger the function
 vim.api.nvim_set_keymap("n", "<Leader>yf", ":lua CopyFilePathToClipboard()<CR>", { noremap = true, silent = true })
 
+keymap.set("n", "0", "^") -- go to beginning of the sentence
+
 -- plugin keymaps
 
 -- vim-maximizer
@@ -41,7 +43,9 @@ local builtin = require("telescope.builtin")
 keymap.set("n", "<leader>ff", builtin.find_files, {})
 keymap.set("n", "<leader><leader>", builtin.find_files, {})
 keymap.set("n", "<leader>fg", builtin.live_grep, {})
-keymap.set("n", "<leader>/", builtin.live_grep, {})
+-- keymap.set("n", "<leader>/", builtin.live_grep, {})
+keymap.set("n", "<leader>/", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+
 keymap.set("n", "<leader>fb", builtin.buffers, {})
 keymap.set("n", "<leader>fh", builtin.help_tags, {})
 keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "[fo] Find old files" })

@@ -1,11 +1,16 @@
 return {
   -- fuzzy finding
+  { "nvim-telescope/telescope-live-grep-args.nvim" },
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
     dependencies = { "nvim-lua/plenary.nvim" },
+    requires = {
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
+    },
     config = function()
       -- configure telescope
+      require("telescope").load_extension("live_grep_args")
       local actions = require("telescope.actions")
       local telescope = require("telescope")
       telescope.setup({
