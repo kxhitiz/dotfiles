@@ -95,3 +95,14 @@ echo "Neovim config symlink created successfully."
 
 # symlink zsh aliases
 ln -s "$current_directory/zsh-custom/aliases.zsh" "$HOME/.aliases"
+
+# Using tmux-256color with macOS's Terminal.app
+# Fixes: Cannot get delete key to work with tmux and OSX
+# https://github.com/tmux/tmux/issues/1257#issuecomment-581378716
+#$ brew install ncurses
+#$ /usr/local/opt/ncurses/bin/infocmp tmux-256color > ~/tmux-256color.info
+#$ tic -xe tmux-256color tmux-256color.info
+## This creates a complied entry in ~/.terminfo
+#$ infocmp tmux-256color | head
+##       Reconstructed via infocmp from file: /Users/libin/.terminfo/74/tmux-256color
+#tmux-256color|tmux with 256 colors,
