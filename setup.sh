@@ -96,6 +96,18 @@ echo "Neovim config symlink created successfully."
 # symlink zsh aliases
 ln -s "$current_directory/zsh-custom/aliases.zsh" "$HOME/.aliases"
 
+# Check if tmux is already installed
+if brew list tmux &> /dev/null; then
+  echo "tmux is already installed."
+else
+  # Install tmux using Homebrew
+  if brew install tmux; then
+    echo "tmux has been successfully installed."
+  else
+    echo "Failed to install tmux."
+  fi
+fi
+
 # Using tmux-256color with macOS's Terminal.app
 # Fixes: Cannot get delete key to work with tmux and OSX
 # https://github.com/tmux/tmux/issues/1257#issuecomment-581378716
@@ -106,3 +118,22 @@ ln -s "$current_directory/zsh-custom/aliases.zsh" "$HOME/.aliases"
 #$ infocmp tmux-256color | head
 ##       Reconstructed via infocmp from file: /Users/libin/.terminfo/74/tmux-256color
 #tmux-256color|tmux with 256 colors,
+#
+
+# install oh-my-zsh
+# https://github.com/ohmyzsh/ohmyzsh
+#
+# install powerlevel10
+# https://github.com/romkatv/powerlevel10k#installation
+#
+# install zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+#
+# install zsh-syntax-highlighting
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+#
+# Configure iTerm2 to send clear command (for tmux)
+# Preferences -> Keys -> + (add new global shortcut)
+# Keyboard shortcut: ⌘+k
+# Action: Send text
+# value: clear\n
