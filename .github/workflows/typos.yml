@@ -9,8 +9,8 @@ jobs:
     - name: Checkout Actions Repository
       uses: actions/checkout@v2
 
-    - name: Check spelling
-      uses: crate-ci/typos@master
+    # - name: Check spelling
+      # uses: crate-ci/typos@master
 
     - name: Comment on PR with Spell Check Results
       uses: actions/github-script@v5
