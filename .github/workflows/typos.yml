@@ -14,12 +14,6 @@ jobs:
       with: 
         files: ./README.md
 
-    - name: Use custom config file
-      uses: crate-ci/typos@master
-      with: 
-        files: ./README.md
-        config: ./myconfig.toml
-
     - name: Ignore implicit configuration file
       uses: crate-ci/typos@master
       with: 
