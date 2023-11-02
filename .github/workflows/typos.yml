@@ -1,4 +1,4 @@
-name: Spell Check Github Action
+name: Spell Check GitHub Action
 on: [pull_request]
 
 jobs:
@@ -11,3 +11,41 @@ jobs:
 
     - name: Check spelling
       uses: crate-ci/typos@master
+
+    - name: Comment on PR with Spell Check Results
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { data } = await github.repos.listPullRequestsAssociatedWithCommit({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            commit_sha: context.sha
+          });
+
+          const prNumber = data[0].number; // Assuming it's the first PR associated with the commit
+
+          const result = 'The spell check has been completed.';
+          const comments = await github.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: prNumber,
+          });
+
+          const existingComment = comments.data.find((comment) => comment.body === result);
+
+          if (existingComment) {
+            await github.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: existingComment.id,
+              body: result,
+            });
+          } else {
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: result,
+            });
+          }
