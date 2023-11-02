@@ -11,14 +11,6 @@ jobs:
 
     - name: Check spelling of file.txt
       uses: crate-ci/typos@master
-      with: 
-        files: ./README.md
-
-    - name: Ignore implicit configuration file
-      uses: crate-ci/typos@master
-      with: 
-        files: ./README.md
-        isolated: true
 
     - name: Writes changes in the local checkout
       uses: crate-ci/typos@master
