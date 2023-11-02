@@ -116,5 +116,7 @@ export EDITOR="nvim"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
 
+gem-info() { gem search --exact "$1" --details --all --prerelease }
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

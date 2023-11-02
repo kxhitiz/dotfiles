@@ -44,4 +44,6 @@ return {
   { "tpope/vim-rails" },
 
   { "github/copilot.vim" },
+
+  { "iamcco/markdown-preview.nvim" },
 }

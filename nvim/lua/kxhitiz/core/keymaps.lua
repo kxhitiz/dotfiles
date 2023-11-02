@@ -80,3 +80,8 @@ keymap.set("n", "<leader>gem", ":e Gemfile<CR>", { desc = "[gem] Open Gemfile" }
 keymap.set("n", "<leader>sc", ":Eschema<CR>", { desc = "[sc] Open Schema" })
 keymap.set("n", "<leader>al", ":A<CR>", { desc = "[al] Open alternate file [eg spec file]" })
 keymap.set("n", "<leader>av", ":AV<CR>", { desc = "[av] Open alternate file in vertical split [eg spec file]" })
+
+-- markdown-preview mappings
+keymap.set("n", "<leader>p", ":MarkdownPreview<CR>", { desc = "[p] Markdown Preview" })
+keymap.set("n", "<leader>s", ":MarkdownPreviewStop<CR>", { desc = "[s] Markdown Preview Stop" })
+
