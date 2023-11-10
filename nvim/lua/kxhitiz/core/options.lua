@@ -10,6 +10,7 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 opt.softtabstop = 2
+vim.g.markdown_recommended_style = 0
 
 -- line wrapping
 opt.wrap = false

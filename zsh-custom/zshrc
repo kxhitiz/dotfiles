@@ -120,3 +120,6 @@ gem-info() { gem search --exact "$1" --details --all --prerelease }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+export ES_JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
