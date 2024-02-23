@@ -2,6 +2,7 @@ local keymap = vim.keymap
 
 -- general keymaps
 keymap.set("i", "jk", "<ESC>")
+keymap.set("n", ";w", "<ESC>:w<Enter>")
 
 keymap.set("n", "<BS>", ":nohl<CR>")
 
@@ -14,6 +15,7 @@ keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
 
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
+keymap.set("n", "<leader>ta", ":tabonly<CR>") -- close all tabs except for current
 keymap.set("n", "<leader>l", ":tabn<CR>") -- go to next tab
 keymap.set("n", "<leader>h", ":tabp<CR>") -- go to previous tab
 
