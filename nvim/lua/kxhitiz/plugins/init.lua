@@ -46,4 +46,26 @@ return {
   { "github/copilot.vim" },
 
   { "iamcco/markdown-preview.nvim" },
+
+  {
+    "echasnovski/mini.animate",
+    version = "*",
+    config = function()
+      require('mini.animate').setup()
+    end,
+  },
+
+  -- {
+  --   "mg979/vim-visual-multi",
+  --   branch = "master"
+  -- },
+
+  {
+    "tamton-aquib/duck.nvim",
+    config = function()
+      vim.keymap.set("n", "<leader>dd", function() require("duck").hatch("🐶") end, {})
+      vim.keymap.set("n", "<leader>dk", function() require("duck").cook() end, {})
+      vim.keymap.set("n", "<leader>da", function() require("duck").cook_all() end, {})
+    end
+  }
 }

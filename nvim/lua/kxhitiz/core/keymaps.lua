@@ -6,18 +6,18 @@ keymap.set("n", ";w", "<ESC>:w<Enter>")
 
 keymap.set("n", "<BS>", ":nohl<CR>")
 
-keymap.set("n", "x", '"_x') -- don't copy deleted character via x on register
+keymap.set("n", "x", '"_x')                    -- don't copy deleted character via x on register
 
-keymap.set("n", "<leader>\\", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>-", "<C-w>s") -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width
-keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
+keymap.set("n", "<leader>\\", "<C-w>v")        -- split window vertically
+keymap.set("n", "<leader>-", "<C-w>s")         -- split window horizontally
+keymap.set("n", "<leader>se", "<C-w>=")        -- make split windows equal width
+keymap.set("n", "<leader>sx", ":close<CR>")    -- close split window
 
-keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
+keymap.set("n", "<leader>to", ":tabnew<CR>")   -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-keymap.set("n", "<leader>ta", ":tabonly<CR>") -- close all tabs except for current
-keymap.set("n", "<leader>l", ":tabn<CR>") -- go to next tab
-keymap.set("n", "<leader>h", ":tabp<CR>") -- go to previous tab
+keymap.set("n", "<leader>ta", ":tabonly<CR>")  -- close all tabs except for current
+keymap.set("n", "<leader>l", ":tabn<CR>")      -- go to next tab
+keymap.set("n", "<leader>h", ":tabp<CR>")      -- go to previous tab
 
 -- Define the function to copy the current file path to the clipboard
 function CopyFilePathToClipboard()
@@ -43,7 +43,6 @@ keymap.set("n", "<leader>nf", ":NvimTreeFindFile<CR>")
 
 -- telescope
 local builtin = require("telescope.builtin")
-keymap.set("n", "<leader>ff", builtin.find_files, {})
 keymap.set("n", "<leader><leader>", builtin.find_files, {})
 keymap.set("n", "<leader>fg", builtin.live_grep, {})
 -- keymap.set("n", "<leader>/", builtin.live_grep, {})
@@ -68,6 +67,7 @@ keymap.set("n", "<leader>m", ":Mason<CR>")
 function StripTrailingSpaces()
   vim.cmd([[ %s/\s\+$//e ]])
 end
+
 ---- Set up key mappings
 vim.api.nvim_set_keymap("n", "<Leader>tr", ":lua StripTrailingSpaces()<CR>", { noremap = true, silent = true })
 
@@ -86,4 +86,3 @@ keymap.set("n", "<leader>av", ":AV<CR>", { desc = "[av] Open alternate file in v
 -- markdown-preview mappings
 keymap.set("n", "<leader>p", ":MarkdownPreview<CR>", { desc = "[p] Markdown Preview" })
 keymap.set("n", "<leader>s", ":MarkdownPreviewStop<CR>", { desc = "[s] Markdown Preview Stop" })
-
