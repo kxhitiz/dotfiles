@@ -46,9 +46,3 @@ opt.iskeyword:append("-")
 -- Show trailing whitespace as red squiggly lines
 vim.opt.list = true
 vim.opt.listchars:append("trail:⋅")
-
-if vim.g.neovide then
-  -- Put anything you want to happen only in Neovide here
-  vim.g.neovide_cursor_vfx_mode = "sonicboom"
-  vim.g.neovide_scale_factor = 1.2
-end

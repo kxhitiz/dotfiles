@@ -2,5 +2,6 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 
 require("kxhitiz.plugins-setup")
 require("kxhitiz.core.options")
+require("kxhitiz.core.neovide")
 require("kxhitiz.core.keymaps")
 require("kxhitiz.core.colorscheme")

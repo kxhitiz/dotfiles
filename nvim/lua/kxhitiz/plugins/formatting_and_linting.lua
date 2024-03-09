@@ -1,6 +1,10 @@
 return {
   {
     "jose-elias-alvarez/null-ls.nvim",
+    requires = {
+      {'neovim/nvim-lspconfig'},
+      {'nvim-lua/plenary.nvim'},
+    },
     config = function()
       local null_ls = require("null-ls")
       local formatting = null_ls.builtins.formatting
@@ -12,6 +16,7 @@ return {
         sources = {
           formatting.prettier,
           formatting.stylua,
+          formatting.rubocop,
           diagnostics.eslint_d.with({ -- js/ts linter
             -- only enable eslint if root has .eslintrc.js
             condition = function(utils)
