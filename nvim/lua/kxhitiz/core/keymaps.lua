@@ -86,3 +86,6 @@ keymap.set("n", "<leader>av", ":AV<CR>", { desc = "[av] Open alternate file in v
 -- markdown-preview mappings
 keymap.set("n", "<leader>p", ":MarkdownPreview<CR>", { desc = "[p] Markdown Preview" })
 keymap.set("n", "<leader>s", ":MarkdownPreviewStop<CR>", { desc = "[s] Markdown Preview Stop" })
+
+-- chat-gpt mappings
+keymap.set("n", "<leader>gpt", ":ChatGPT", { desc = "[gpt] Open ChatGPT" })

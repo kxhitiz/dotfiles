@@ -23,7 +23,7 @@ return {
               return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
             end,
           }),
-          diagnostics.reek,
+          -- diagnostics.reek,
           diagnostics.rubocop,
         },
 
