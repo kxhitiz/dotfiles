@@ -137,3 +137,10 @@ fi
 # Keyboard shortcut: ⌘+k
 # Action: Send text
 # value: clear\n
+
+if [ ! $(which fzf) ]; then brew install fzf; fi
+if [ ! $(which bat) ]; then brew install bat; fi
+if [ ! $(which eza) ]; then brew install eza; fi
+if [ ! $(which tlrc) ]; then brew install tlrc; fi
+if [ ! $(which thefuck) ]; then brew install thefuck; fi
+if [ ! $(which zoxide) ]; then brew install zoxide; fi
